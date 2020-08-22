@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.3",
         "phpactor/class-to-file": "~0.1",
         "phpactor/composer-autoloader-extension": "~0.1",
         "phpactor/container": "^1.0"
