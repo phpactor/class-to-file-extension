@@ -56,7 +56,7 @@ class ClassToFileExtension implements Extension
                 $classToFiles[] = new ComposerClassToFile($classLoader);
             }
 
-            if ($container->getParameter(self::PARAM_BRUTE_FORCE_CONVERSION) && $container->empty($classToFiles)) {
+            if ($container->getParameter(self::PARAM_BRUTE_FORCE_CONVERSION) && empty($classToFiles)) {
                 $projectDir = $container->get(FilePathResolverExtension::SERVICE_FILE_PATH_RESOLVER)->resolve($container->getParameter(self::PARAM_PROJECT_ROOT));
                 $classToFiles[] = new SimpleClassToFile($projectDir);
             }
