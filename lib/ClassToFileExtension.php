@@ -21,6 +21,7 @@ class ClassToFileExtension implements Extension
     const SERVICE_CONVERTER = 'class_to_file.converter';
     const PARAM_CLASS_LOADERS = 'composer.class_loaders';
     const PARAM_PROJECT_ROOT = 'class_to_file.project_root';
+    const PARAM_BRUTE_FORCE_CONVERSION = 'class_to_file.brute_force_conversion';
 
     /**
      * {@inheritDoc}
@@ -29,6 +30,11 @@ class ClassToFileExtension implements Extension
     {
         $schema->setDefaults([
             self::PARAM_PROJECT_ROOT => '%project_root%',
+            self::PARAM_BRUTE_FORCE_CONVERSION => true,
+        ]);
+        $schema->setDescriptions([
+            self::PARAM_PROJECT_ROOT => 'Root path of the project (e.g. where composer.json is)',
+            self::PARAM_BRUTE_FORCE_CONVERSION => 'If composer not found, fallback to scanning all files (very time consuming depending on project size)',
         ]);
     }
 
@@ -50,7 +56,7 @@ class ClassToFileExtension implements Extension
                 $classToFiles[] = new ComposerClassToFile($classLoader);
             }
 
-            if (empty($classToFiles)) {
+            if ($container->getParameter(self::PARAM_BRUTE_FORCE_CONVERSION) && $container->empty($classToFiles)) {
                 $projectDir = $container->get(FilePathResolverExtension::SERVICE_FILE_PATH_RESOLVER)->resolve($container->getParameter(self::PARAM_PROJECT_ROOT));
                 $classToFiles[] = new SimpleClassToFile($projectDir);
             }
