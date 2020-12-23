@@ -1,9 +1,8 @@
 {
     "name": "phpactor/class-to-file-extension",
+    "type": "phpactor-extension",
     "description": "Converts classes to files and vice-versa",
     "license": "MIT",
-    "type": "phpactor-extension",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Daniel Leech",
@@ -17,9 +16,16 @@
         "phpactor/container": "^1.0"
     },
     "require-dev": {
+        "ergebnis/composer-normalize": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.17",
         "phpstan/phpstan": "~0.12.0",
-        "phpunit/phpunit": "~7.0",
-        "friendsofphp/php-cs-fixer": "~2.15.0"
+        "phpunit/phpunit": "~7.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.2.x-dev"
+        },
+        "phpactor.extension_class": "Phpactor\\Extension\\ClassToFile\\ClassToFileExtension"
     },
     "autoload": {
         "psr-4": {
@@ -31,10 +37,6 @@
             "Phpactor\\Extension\\ClassToFile\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "phpactor.extension_class": "Phpactor\\Extension\\ClassToFile\\ClassToFileExtension",
-        "branch-alias": {
-            "dev-master": "0.2.x-dev"
-        }
-    }
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
