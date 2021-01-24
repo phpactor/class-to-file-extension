@@ -17,7 +17,7 @@ use Phpactor\FilePathResolverExtension\FilePathResolverExtension;
  */
 class ClassToFileExtensionTest extends TestCase
 {
-    public function testCreatesConverter()
+    public function testCreatesConverter(): void
     {
         $converter = $this->createConverter();
         $candidates = $converter->classToFileCandidates(ClassName::fromString(__CLASS__));
@@ -26,7 +26,7 @@ class ClassToFileExtensionTest extends TestCase
         $this->assertEquals('ClassToFileExtensionTest', $candidates->best()->name());
     }
 
-    public function testCreatesConverterWithoutComposer()
+    public function testCreatesConverterWithoutComposer(): void
     {
         $converter = $this->createConverter([
             ComposerAutoloaderExtension::PARAM_AUTOLOADER_PATH => __DIR__ . '/autoload.php',
